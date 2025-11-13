@@ -1,0 +1,7 @@
+README.md
+main.py
+pyproject.toml
+automated_research_report_generation.egg-info/PKG-INFO
+automated_research_report_generation.egg-info/SOURCES.txt
+automated_research_report_generation.egg-info/dependency_links.txt
+automated_research_report_generation.egg-info/top_level.txt
