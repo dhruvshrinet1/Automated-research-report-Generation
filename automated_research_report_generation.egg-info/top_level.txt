@@ -1,1 +1,4 @@
-main
+notebook
+research_analysis
+static
+templates
