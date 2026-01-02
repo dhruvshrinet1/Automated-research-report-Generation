@@ -2,3 +2,4 @@ notebook
 research_analysis
 static
 templates
+utils

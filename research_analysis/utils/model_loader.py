@@ -3,12 +3,12 @@ import sys
 import json
 import asyncio
 from dotenv import load_dotenv
-from utils.config_loader import load_config
+from research_analysis.utils.config_loader import load_config
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
-from logger import GLOBAL_LOGGER as log
-from exception.custom_exception import ResearchAnalystException
+from research_analysis.logger import GLOBAL_LOGGER as log
+from research_analysis.exception.custom_exception import ResearchAnalystException
 
 
 class ApiKeyManager:
@@ -62,7 +62,7 @@ class ModelLoader:
             log.info("YAML configuration loaded successfully", config_keys=list(self.config.keys()))
         except Exception as e:
             log.error("Error initializing ModelLoader", error=str(e))
-            raise ResearchAnalystException("Failed to initialize ModelLoader", sys)
+            raise ResearchAnalystException("Failed to initialize ModelLoader", e)
 
     # ----------------------------------------------------------------------
     # 🔹 Embedding Loader
@@ -94,7 +94,7 @@ class ModelLoader:
 
         except Exception as e:
             log.error("Error loading embedding model", error=str(e))
-            raise ResearchAnalystException("Failed to load embedding model", sys)
+            raise ResearchAnalystException("Failed to load embedding model", e)
 
     # ----------------------------------------------------------------------
     # 🔹 LLM Loader
@@ -158,7 +158,7 @@ class ModelLoader:
 
         except Exception as e:
             log.error("Error loading LLM", error=str(e))
-            raise ResearchAnalystException("Failed to load LLM", sys)
+            raise ResearchAnalystException("Failed to load LLM", e)
 
 
 # ----------------------------------------------------------------------

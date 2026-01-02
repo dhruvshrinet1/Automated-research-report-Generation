@@ -18,3 +18,4 @@ Requires-Dist: tavily-python>=0.7.12
 Requires-Dist: wikipedia>=1.4.0
 
 # Automated-research-report-Generation
+ source .venv/bin/activate
