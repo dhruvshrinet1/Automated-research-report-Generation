@@ -1,0 +1,13 @@
+services:
+  research-app:
+    build: .
+    container_name: research_agent
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./logs:/app/logs
+      - ./generated_report:/app/generated_report
+      - ./.env:/app/.env
+    environment:
+      - CONFIG_PATH=/app/research_analysis/config/config.yaml
+    restart: unless-stopped

@@ -2,85 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login | Autonomous Report Generator</title>
   <link rel="stylesheet" href="/static/css/styles.css" />
-
-  <style>
-    .password-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .toggle-password {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      font-size: 1.1rem;
-      color: #475569;
-      transition: color 0.2s ease;
-      user-select: none;
-    }
-
-    .toggle-password:hover {
-      color: #2563eb;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
   <div class="auth-container">
     <div class="auth-card">
-      <h2>🔐 Login</h2>
+      <h2>Welcome Back</h2>
+      <p class="text-center" style="margin-bottom: 1.5rem">Sign in to generate research reports</p>
 
       {% if error %}
-        <p class="error">{{ error }}</p>
+        <div class="error">{{ error }}</div>
       {% endif %}
 
       <form method="post" action="/login">
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          required
-        />
-
-        <div class="password-wrapper">
-          <input
-            type="password"
-            name="password"
-            id="login-password"
-            placeholder="Password"
-            required
-          />
-          <span class="toggle-password" id="toggleLoginPassword">👁</span>
+        <div>
+           <label for="username">Username</label>
+           <input type="text" id="username" name="username" placeholder="Enter your username" required />
         </div>
 
-        <button type="submit">Login</button>
+        <div class="password-wrapper">
+          <label for="login-password">Password</label>
+          <input type="password" name="password" id="login-password" placeholder="••••••••" required />
+          <span class="toggle-password" id="toggleLoginPassword" style="top: 38px;">👁️</span>
+        </div>
+
+        <button type="submit">Sign In</button>
       </form>
 
-      <p class="switch">
-        Don’t have an account?
-        <a href="/signup">Signup here</a>
+      <p class="text-center mt-4 text-sm">
+        Don’t have an account? <a href="/signup">Create one</a>
       </p>
     </div>
   </div>
 
   <script>
-    const toggleLoginPassword = document.getElementById("toggleLoginPassword");
-    const loginPassword = document.getElementById("login-password");
+    const toggleCtx = document.getElementById("toggleLoginPassword");
+    const pwdCtx = document.getElementById("login-password");
 
-    toggleLoginPassword.addEventListener("click", () => {
-      const type =
-        loginPassword.getAttribute("type") === "password"
-          ? "text"
-          : "password";
-      loginPassword.setAttribute("type", type);
-      toggleLoginPassword.textContent =
-        type === "password" ? "👁" : "🙈";
+    toggleCtx.addEventListener("click", () => {
+      const type = pwdCtx.getAttribute("type") === "password" ? "text" : "password";
+      pwdCtx.setAttribute("type", type);
+      toggleCtx.textContent = type === "password" ? "👁️" : "🙈";
     });
   </script>
 </body>

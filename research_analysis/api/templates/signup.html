@@ -1,105 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Signup | Autonomous Report Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Autonomous Report Generator</title>
   <link rel="stylesheet" href="/static/css/styles.css" />
-  <style>
-    .password-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .toggle-password {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      font-size: 1.1rem;
-      color: #475569;
-      transition: color 0.2s ease;
-    }
-
-    .toggle-password:hover {
-      color: #2563eb;
-    }
-
-    .password-hint {
-      font-size: 0.8rem;
-      color: #64748b;
-      margin-top: 4px;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <div class="auth-container">
     <div class="auth-card">
-      <h2>📄 Signup</h2>
+      <h2>Create Account</h2>
+      <p class="text-center" style="margin-bottom: 1.5rem">Join to start researching</p>
 
       {% if error %}
-        <p class="error">{{ error }}</p>
+      <div class="error">{{ error }}</div>
       {% endif %}
 
-      <form method="post" action="/signup" onsubmit="return validateForm()">
-        <input
-          type="text"
-          name="username"
-          placeholder="Choose a username"
-          minlength="3"
-          maxlength="32"
-          required
-        />
-
-        <div class="password-wrapper">
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Choose a password"
-            minlength="6"
-            maxlength="72"
-            required
-          />
-          <span class="toggle-password" id="togglePassword">👁</span>
+      <form method="post" action="/signup">
+        <div>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Choose a username" required />
         </div>
 
-        <p class="password-hint">
-          Password must be 6–72 characters (bcrypt limit)
-        </p>
+        <div class="password-wrapper">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" placeholder="Min. 8 characters" required />
+          <span class="toggle-password" id="togglePassword" style="top: 38px;">👁️</span>
+        </div>
 
-        <button type="submit">Create Account</button>
+        <button type="submit">Sign Up</button>
       </form>
 
-      <p class="switch">
-        Already have an account?
-        <a href="/">Login</a>
+      <p class="text-center mt-4 text-sm">
+        Already have an account? <a href="/">Log in</a>
       </p>
     </div>
   </div>
 
   <script>
-    const togglePassword = document.getElementById("togglePassword");
-    const passwordField = document.getElementById("password");
+    const toggleCtx = document.getElementById("togglePassword");
+    const pwdCtx = document.getElementById("password");
 
-    togglePassword.addEventListener("click", () => {
-      const type =
-        passwordField.getAttribute("type") === "password" ? "text" : "password";
-      passwordField.setAttribute("type", type);
-      togglePassword.textContent = type === "password" ? "👁" : "🙈";
+    toggleCtx.addEventListener("click", () => {
+      const type = pwdCtx.getAttribute("type") === "password" ? "text" : "password";
+      pwdCtx.setAttribute("type", type);
+      toggleCtx.textContent = type === "password" ? "👁️" : "🙈";
     });
-
-    // 🧩 Frontend password validation
-    function validateForm() {
-      const password = passwordField.value;
-      if (password.length > 72) {
-        alert("Password cannot exceed 72 characters (bcrypt limit)");
-        return false;
-      }
-      return true;
-    }
   </script>
 </body>
+
 </html>
